@@ -14,5 +14,6 @@ class SupabaseFunctions {
     }
     return planetList;
   }
-  
+
+  // add to favourite list
 }

@@ -21,9 +21,11 @@ class _HomeScreenState extends State<HomeScreen>
         behaviour: RandomParticleBehaviour(options: particles),
         child: const Column(
           children: [
-            Text(
-              "mkmkmkm",
-              style: TextStyle(color: Colors.white),
+            Center(
+              child: Text(
+                "mkmkmkm",
+                style: TextStyle(color: Colors.black, fontSize: 22),
+              ),
             )
           ],
         ),
