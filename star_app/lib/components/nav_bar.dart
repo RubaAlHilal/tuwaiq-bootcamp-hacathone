@@ -35,7 +35,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         enableFloatingNavBar: true,
         itemPadding:
             const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
-        marginR: const EdgeInsets.symmetric(horizontal: 120, vertical: 20),
+        marginR: const EdgeInsets.symmetric(horizontal: 120, vertical: 2),
         curve: Curves.fastLinearToSlowEaseIn,
         backgroundColor: const Color.fromARGB(255, 6, 10, 56),
         currentIndex: _currentIndex,

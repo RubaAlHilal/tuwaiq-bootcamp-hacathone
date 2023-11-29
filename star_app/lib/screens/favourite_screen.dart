@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:star_app/animation/global.dart';
+import 'package:star_app/networking/supabase_networking/supabase_Func.dart';
+import 'package:star_app/screens/details_screen.dart';
+
+import '../components/favourite_card.dart';
 
 class FavouriteScrren extends StatelessWidget {
   const FavouriteScrren({super.key});
@@ -12,7 +17,7 @@ class FavouriteScrren extends StatelessWidget {
           fit: BoxFit.fill,
           image: AssetImage("assets/stars-galaxy.gif"),
         )),
-        child: const SafeArea(
+        child: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(18.0),
             child: Column(
@@ -22,62 +27,69 @@ class FavouriteScrren extends StatelessWidget {
                   "Your Favourite Planets",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: SizedBox(
-                      height: 120,
-                      child: FavouriteCard(
-                        title: '',
-                        subtitle: '',
-                        image: '',
+                Column(
+                  children: [
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                        child: FutureBuilder(
+                            future: SupabaseFunctions().getFavourite(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                favouriteList = snapshot.data!;
+
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const CircularProgressIndicator();
+                                } else {
+                                  return ListView.builder(
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    itemCount: favouriteList.length,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailsScreen(
+                                                      planet:
+                                                          favouriteList[index],
+                                                    ))),
+                                        child: SizedBox(
+                                          height: 120,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 8.0, bottom: 8),
+                                            child: FavouriteCard(
+                                              title: favouriteList[index]
+                                                  .planetname!,
+                                              subtitle: favouriteList[index]
+                                                  .planetID!
+                                                  .toString(),
+                                              image: favouriteList[index]
+                                                  .imageUrl!,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+                              } else {
+                                if (snapshot.hasError) {
+                                  return Text(snapshot.error.toString());
+                                } else {
+                                  return Container();
+                                }
+                              }
+                            }),
                       ),
                     ),
-                  ),
+                  ],
                 )
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FavouriteCard extends StatelessWidget {
-  const FavouriteCard({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.image,
-  });
-
-  final String title, subtitle, image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white.withOpacity(0.8),
-      shape: const StadiumBorder(),
-      clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: EdgeInsets.all(15.0),
-        child: ListTile(
-          title: Text(
-            title,
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22),
-          ),
-          subtitle: Text(
-            subtitle,
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
-          ),
-          trailing: ImageIcon(
-            NetworkImage(
-              image,
-            ),
-            size: 50,
           ),
         ),
       ),
