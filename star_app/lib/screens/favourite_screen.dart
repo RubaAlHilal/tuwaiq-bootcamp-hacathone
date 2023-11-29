@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_app/animation/global.dart';
-import 'package:star_app/networking/supabase_networking/supabase_Func.dart';
+import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
 
 import '../components/favourite_card.dart';
@@ -19,19 +19,25 @@ class FavouriteScrren extends StatelessWidget {
         )),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(18.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const SizedBox(
+                  height: 25,
+                ),
+                const Text(
                   "Your Favourite Planets",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
                 ),
                 Column(
                   children: [
                     SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                         child: FutureBuilder(
                             future: SupabaseFunctions().getFavourite(),
                             builder: (context, snapshot) {
@@ -64,9 +70,6 @@ class FavouriteScrren extends StatelessWidget {
                                             child: FavouriteCard(
                                               title: favouriteList[index]
                                                   .planetname!,
-                                              subtitle: favouriteList[index]
-                                                  .planetID!
-                                                  .toString(),
                                               image: favouriteList[index]
                                                   .imageUrl!,
                                             ),
@@ -76,12 +79,16 @@ class FavouriteScrren extends StatelessWidget {
                                     },
                                   );
                                 }
+                              }
+                              if (favouriteList.isEmpty) {
+                                return const Center(
+                                    child: Text(
+                                  "No planetes added to your favourite",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 22),
+                                ));
                               } else {
-                                if (snapshot.hasError) {
-                                  return Text(snapshot.error.toString());
-                                } else {
-                                  return Container();
-                                }
+                                return Text(snapshot.error.toString());
                               }
                             }),
                       ),

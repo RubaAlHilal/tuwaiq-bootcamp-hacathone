@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/networking/supabase_networking/supabase_Func.dart';
+import 'package:star_app/model/stars_mode.dart';
+import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
-import 'package:star_app/screens/favourite_screen.dart';
 
 import '../animation/global.dart';
 import '../components/favourite_card.dart';
@@ -26,6 +26,9 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
                   const Text(
                     "Planets on the Solar System",
                     style: TextStyle(
@@ -34,56 +37,73 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.white),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 55,
                   ),
-                  FutureBuilder(
-                      future: SupabaseFunctions().getData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          planetList = snapshot.data!;
+                  Image.network(
+                    "https://cdn-icons-png.flaticon.com/128/10221/10221087.png",
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Column(
+                    children: [
+                      FutureBuilder(
+                          future: SupabaseFunctions().getData(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              planetList = snapshot.data!;
 
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const CircularProgressIndicator();
-                          } else {
-                            return ListView.builder(
-                              primary: false,
-                              shrinkWrap: true,
-                              itemCount: planetList.length,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailsScreen(
-                                                planet: planetList[index],
-                                              ))),
-                                  child: SizedBox(
-                                    height: 120,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, bottom: 8),
-                                      child: FavouriteCard(
-                                        title: planetList[index].planetname!,
-                                        subtitle: planetList[index]
-                                            .planetID!
-                                            .toString(),
-                                        image: planetList[index].imageUrl!,
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else {
+                                return ListView.builder(
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  itemCount: planetList.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailsScreen(
+                                                    planet: planetList[index],
+                                                  ))),
+                                      child: SizedBox(
+                                        height: 120,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, bottom: 8),
+                                          child: FavouriteCard(
+                                            title:
+                                                planetList[index].planetname!,
+                                            image: planetList[index].imageUrl!,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    );
+                                  },
+                                );
+                              }
+                            } else {
+                              if (snapshot.hasError) {
+                                print(snapshot.error);
+                                return Center(
+                                  child: Text(
+                                    snapshot.error.toString(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 18),
                                   ),
                                 );
-                              },
-                            );
-                          }
-                        } else {
-                          if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          } else {
-                            return Container();
-                          }
-                        }
-                      }),
+                              } else {
+                                return Container();
+                              }
+                            }
+                          }),
+                    ],
+                  ),
                 ],
               ),
             ),

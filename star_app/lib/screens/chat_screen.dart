@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 flex: 1,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white54,
+                      color: Colors.white.withOpacity(0.8),
                       borderRadius: BorderRadius.circular(15)),
                   height: 55,
                   child: Row(
@@ -55,11 +55,12 @@ class _ChatScreenState extends State<ChatScreen> {
                           maxLines: 1,
                           controller: questionController,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none),
                               hintText: "Ask Astronomer AI",
                               hintStyle: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700)),
+                                  fontWeight: FontWeight.w500)),
                         ),
                       ),
                       Flexible(
@@ -72,7 +73,11 @@ class _ChatScreenState extends State<ChatScreen> {
                               answer = answerGPT;
                               setState(() {});
                             },
-                            icon: const Icon(Icons.search_rounded)),
+                            icon: const Icon(
+                              Icons.search_rounded,
+                              color: Colors.black,
+                              size: 28,
+                            )),
                       )
                     ],
                   ),

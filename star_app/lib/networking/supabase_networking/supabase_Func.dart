@@ -29,7 +29,7 @@ class SupabaseFunctions {
   }
 
   addFavourite(Map body) async {
-    await supabase.from("favourite").insert(body).select();
+    await supabase.from("favourite").insert(body).select("*");
   }
 
   delete({required int id}) async {
