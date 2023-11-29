@@ -1,19 +1,12 @@
-import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_background/particles.dart';
+import 'package:star_app/networking/supabase_networking/supabase_Func.dart';
 import 'package:star_app/screens/favourite_screen.dart';
 
 import '../animation/global.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,25 +16,69 @@ class _HomeScreenState extends State<HomeScreen>
           fit: BoxFit.fill,
           image: AssetImage("assets/stars-galaxy.gif"),
         )),
-        child: const SafeArea(
+        child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(18.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Your Favourite Planets",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                const Text(
+                  "Planets on the Solar System",
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
                 ),
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: SizedBox(
-                      height: 120,
-                      child: FavouriteCard(),
-                    ),
-                  ),
-                )
+                const SizedBox(
+                  height: 15,
+                ),
+                FutureBuilder(
+                    future: SupabaseFunctions().getData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        planetList = snapshot.data!;
+
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: planetList.length,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                height: 120,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 8),
+                                  child: FavouriteCard(
+                                    title: planetList[index].planetname!,
+                                    subtitle:
+                                        planetList[index].planetID!.toString(),
+                                    image: planetList[index].imageUrl!,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                      } else {
+                        if (snapshot.hasError) {
+                          return Text(snapshot.error.toString());
+                        } else {
+                          return Container();
+                        }
+                      }
+                    }),
+                // SingleChildScrollView(
+                //   child: Padding(
+                //     padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                //     child: SizedBox(
+                //       height: 120,
+                //       child: FavouriteCard(),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:star_app/animation/global.dart';
 import 'package:star_app/model/stars_mode.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -8,7 +9,6 @@ class SupabaseFunctions {
     final data = await supabase.from("planets").select("*");
 
     print(data);
-    List<PlanetModel> planetList = [];
     for (var element in data) {
       planetList.add(PlanetModel.fromJson(element));
     }
@@ -21,7 +21,7 @@ class SupabaseFunctions {
     final data = await supabase.from("favourite").select("*");
 
     print(data);
-    List<PlanetModel> favouriteList = [];
+
     for (var element in data) {
       favouriteList.add(PlanetModel.fromJson(element));
     }
@@ -30,5 +30,9 @@ class SupabaseFunctions {
 
   addFavourite(Map body) async {
     await supabase.from("favourite").insert(body).select();
+  }
+
+  delete({required int id}) async {
+    await supabase.from("favourite").delete().eq('id', id);
   }
 }
