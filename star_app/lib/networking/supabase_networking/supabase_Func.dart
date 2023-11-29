@@ -15,5 +15,20 @@ class SupabaseFunctions {
     return planetList;
   }
 
-  // add to favourite list
+  //get and add to favourite list
+
+  Future<List<PlanetModel>> getFavourite() async {
+    final data = await supabase.from("favourite").select("*");
+
+    print(data);
+    List<PlanetModel> favouriteList = [];
+    for (var element in data) {
+      favouriteList.add(PlanetModel.fromJson(element));
+    }
+    return favouriteList;
+  }
+
+  addFavourite(Map body) async {
+    await supabase.from("favourite").insert(body).select();
+  }
 }

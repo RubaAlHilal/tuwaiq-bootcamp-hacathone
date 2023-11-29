@@ -25,12 +25,13 @@ class ChatContainer extends StatelessWidget {
             minWidth: 275),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: isUser ? Colors.indigo.shade900 : Colors.grey.shade200),
+            color: isUser ? Color.fromARGB(255, 6, 10, 56) : Colors.white60),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: DefaultTextStyle(
             style: TextStyle(
               fontSize: 18,
+              fontWeight: FontWeight.w500,
               color: isUser ? Colors.white70 : Colors.black,
             ),
             child: SingleChildScrollView(
