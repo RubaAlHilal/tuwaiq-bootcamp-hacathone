@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:star_app/components/nav_bar.dart';
+import 'package:star_app/networking/supabase_networking/supabase_config.dart';
 
 void main() {
+  supabaseConfig();
   runApp(const MainApp());
 }
 
@@ -13,7 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: false),
       debugShowCheckedModeBanner: false,
-      home: NavigationScreen(),
+      home: const NavigationScreen(),
     );
   }
 }
