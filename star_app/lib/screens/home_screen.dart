@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/model/stars_mode.dart';
+import 'package:star_app/components/planets_cards.dart';
+
 import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
 
 import '../animation/global.dart';
-import '../components/favourite_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -56,7 +56,8 @@ class HomeScreen extends StatelessWidget {
 
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const CircularProgressIndicator();
+                                return const Center(
+                                    child: CircularProgressIndicator());
                               } else {
                                 return ListView.builder(
                                   primary: false,
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               top: 8.0, bottom: 8),
-                                          child: FavouriteCard(
+                                          child: PlanetsCard(
                                             title:
                                                 planetList[index].planetname!,
                                             image: planetList[index].imageUrl!,
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                               }
                             } else {
                               if (snapshot.hasError) {
-                                print(snapshot.error);
+                                // print(snapshot.error);
                                 return Center(
                                   child: Text(
                                     snapshot.error.toString(),

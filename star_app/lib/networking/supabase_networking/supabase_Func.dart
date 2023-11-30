@@ -8,7 +8,7 @@ class SupabaseFunctions {
   Future<List<PlanetModel>> getData() async {
     final data = await supabase.from("planets").select("*");
 
-    print(data);
+    // print(data);
     for (var element in data) {
       planetList.add(PlanetModel.fromJson(element));
     }
@@ -20,7 +20,7 @@ class SupabaseFunctions {
   Future<List<PlanetModel>> getFavourite() async {
     final data = await supabase.from("favourite").select("*");
 
-    print(data);
+    // print(data);
 
     for (var element in data) {
       favouriteList.add(PlanetModel.fromJson(element));

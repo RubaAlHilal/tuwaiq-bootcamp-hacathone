@@ -72,6 +72,7 @@ class FavouriteScrren extends StatelessWidget {
                                                   .planetname!,
                                               image: favouriteList[index]
                                                   .imageUrl!,
+                                              planet: favouriteList[index],
                                             ),
                                           ),
                                         ),
