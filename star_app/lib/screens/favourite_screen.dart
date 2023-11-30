@@ -29,7 +29,7 @@ class FavouriteScrren extends StatelessWidget {
                   height: 25,
                 ),
                 const Text(
-                  "Yor to-read list",
+                  "Your To-Read list",
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w500,
@@ -52,8 +52,7 @@ class FavouriteScrren extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Center(
-                                          child:
-                                              CircularProgressIndicator()),
+                                          child: CircularProgressIndicator()),
                                     ],
                                   );
                                 } else {
