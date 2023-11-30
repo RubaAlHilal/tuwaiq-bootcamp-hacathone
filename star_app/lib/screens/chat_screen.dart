@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 flex: 1,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withOpacity(0.7),
                       borderRadius: BorderRadius.circular(15)),
                   height: 55,
                   child: Row(
@@ -69,9 +69,10 @@ class _ChatScreenState extends State<ChatScreen> {
                             onPressed: () async {
                               final answerGPT = await AINetworking()
                                   .connectGPT(msg: questionController.text);
-                              answer = answerGPT;
 
-                              setState(() {});
+                              setState(() {
+                                answer = answerGPT;
+                              });
                             },
                             icon: const Icon(
                               Icons.search_rounded,

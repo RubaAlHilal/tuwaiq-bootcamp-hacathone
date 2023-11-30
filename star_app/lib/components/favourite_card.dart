@@ -22,7 +22,7 @@ class _FavouriteCardState extends State<FavouriteCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white.withOpacity(0.8),
+      color: Colors.white.withOpacity(0.7),
       shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
       clipBehavior: Clip.antiAlias,
       child: Padding(

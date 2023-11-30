@@ -40,7 +40,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     },
                     icon: const Icon(
                       Icons.arrow_back_ios_rounded,
-                      color: Colors.white,
+                      color: Colors.white70,
                       size: 30,
                     ),
                   ),
@@ -56,6 +56,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Card(
+                  color: Colors.white.withOpacity(0.8),
                   shape: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15)),

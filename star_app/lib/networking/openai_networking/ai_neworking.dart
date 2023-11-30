@@ -33,7 +33,7 @@ class AINetworking {
       if (response.statusCode == 200) {
         final bodyGPT = json.decode(response.body);
         // print(response.body);
-        print(bodyGPT["choices"][0]["message"]["content"]);
+        // print(bodyGPT["choices"][0]["message"]["content"]);
         return bodyGPT["choices"][0]["message"]["content"];
       } else {
         return "No data ${response.body}";

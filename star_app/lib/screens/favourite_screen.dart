@@ -29,7 +29,7 @@ class FavouriteScrren extends StatelessWidget {
                   height: 25,
                 ),
                 const Text(
-                  "Your Favourite Planets",
+                  "Yor to-read list",
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w500,
@@ -48,7 +48,14 @@ class FavouriteScrren extends StatelessWidget {
 
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return const CircularProgressIndicator();
+                                  return const Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                          child:
+                                              CircularProgressIndicator()),
+                                    ],
+                                  );
                                 } else {
                                   return ListView.builder(
                                     primary: false,
@@ -82,6 +89,15 @@ class FavouriteScrren extends StatelessWidget {
                                     },
                                   );
                                 }
+                              }
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircularProgressIndicator(),
+                                  ],
+                                );
                               }
                               if (favouriteList.isEmpty) {
                                 return const Center(

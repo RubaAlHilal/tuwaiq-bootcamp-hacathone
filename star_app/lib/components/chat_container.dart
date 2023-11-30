@@ -27,7 +27,7 @@ class ChatContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: isUser
                 ? const Color.fromARGB(255, 6, 10, 56)
-                : Colors.white.withOpacity(0.8)),
+                : Colors.white.withOpacity(0.7)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: DefaultTextStyle(
