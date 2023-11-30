@@ -69,8 +69,8 @@ class _ChatScreenState extends State<ChatScreen> {
                             onPressed: () async {
                               final answerGPT = await AINetworking()
                                   .connectGPT(msg: questionController.text);
-
                               answer = answerGPT;
+
                               setState(() {});
                             },
                             icon: const Icon(

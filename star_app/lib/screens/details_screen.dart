@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/animation/global.dart';
+import 'package:star_app/globally/global.dart';
 import 'package:star_app/model/stars_mode.dart';
 import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 

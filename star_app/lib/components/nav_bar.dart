@@ -48,8 +48,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             icon: const Icon(Icons.chat),
           ),
           DotNavigationBarItem(
-            icon: const ImageIcon(NetworkImage(
-                "https://cdn-icons-png.flaticon.com/128/93/93741.png")),
+            icon: const ImageIcon(AssetImage("assets/globe.png")),
           ),
           DotNavigationBarItem(
             icon: const Icon(Icons.star_rounded),

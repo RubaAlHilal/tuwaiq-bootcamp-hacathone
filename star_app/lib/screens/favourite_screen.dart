@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/animation/global.dart';
+import 'package:star_app/globally/global.dart';
 import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
 
@@ -12,6 +12,8 @@ class FavouriteScrren extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             image: DecorationImage(
           fit: BoxFit.fill,

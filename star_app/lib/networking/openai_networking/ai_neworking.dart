@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class AINetworking {
   String aiUrl = "https://api.openai.com/v1/chat/completions";
   String keyValue =
-      "Bearer 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";
+      "Bearer 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";
   Future<String> connectGPT({required String msg}) async {
     var url = Uri.parse(aiUrl);
     try {
@@ -33,6 +33,7 @@ class AINetworking {
       if (response.statusCode == 200) {
         final bodyGPT = json.decode(response.body);
         // print(response.body);
+        print(bodyGPT["choices"][0]["message"]["content"]);
         return bodyGPT["choices"][0]["message"]["content"];
       } else {
         return "No data ${response.body}";

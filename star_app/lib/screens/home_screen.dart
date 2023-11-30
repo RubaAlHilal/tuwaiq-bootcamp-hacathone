@@ -4,7 +4,7 @@ import 'package:star_app/components/planets_cards.dart';
 import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
 
-import '../animation/global.dart';
+import '../globally/global.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,6 +13,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             image: DecorationImage(
           fit: BoxFit.fill,
@@ -39,8 +41,8 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 55,
                   ),
-                  Image.network(
-                    "https://cdn-icons-png.flaticon.com/128/10221/10221087.png",
+                  Image.asset(
+                    "assets/supabase.png",
                     color: Colors.white,
                   ),
                   const SizedBox(
@@ -56,8 +58,14 @@ class HomeScreen extends StatelessWidget {
 
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const Center(
-                                    child: CircularProgressIndicator());
+                                return const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ],
+                                );
                               } else {
                                 return ListView.builder(
                                   primary: false,
@@ -88,6 +96,15 @@ class HomeScreen extends StatelessWidget {
                                   },
                                 );
                               }
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CircularProgressIndicator(),
+                                ],
+                              );
                             } else {
                               if (snapshot.hasError) {
                                 // print(snapshot.error);
