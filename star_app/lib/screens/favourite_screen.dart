@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:star_app/globally/global.dart';
 import 'package:star_app/networking/supabase_networking/supabase_func.dart';
 import 'package:star_app/screens/details_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../components/favourite_card.dart';
 

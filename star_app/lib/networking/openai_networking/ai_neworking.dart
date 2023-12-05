@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class AINetworking {
   String aiUrl = "https://api.openai.com/v1/chat/completions";
   String keyValue =
-      "Bearer ";
+      "Bearer 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";
   Future<String> connectGPT({required String msg}) async {
     var url = Uri.parse(aiUrl);
     try {

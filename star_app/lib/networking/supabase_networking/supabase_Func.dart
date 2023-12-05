@@ -27,6 +27,8 @@ class SupabaseFunctions {
     return favouriteList;
   }
 
+  
+
   addFavourite(Map body) async {
     await supabase.from("favourite").insert(body).select("*");
   }

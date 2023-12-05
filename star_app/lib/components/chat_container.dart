@@ -38,6 +38,8 @@ class ChatContainer extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               child: AnimatedTextKit(
+                isRepeatingAnimation: false,
+                repeatForever: false,
                 animatedTexts: [
                   TypewriterAnimatedText(textEntry,
                       textAlign: TextAlign.justify)
