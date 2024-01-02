@@ -24,11 +24,6 @@ provide users with scientific answers about space, and the star system using Ope
 
 ![chat](https://github.com/RubaAlHilal/tuwaiq-bootcamp-hacathone/assets/73358612/1aa9aba5-1cfb-4d44-80cd-cada21b5de42)
 
-**Video record**
-
-
-Uploading Android Emulator - Pixel_7_API_28_5554 2023-11-30 12-13-13.mp4…
-
 
 
 
