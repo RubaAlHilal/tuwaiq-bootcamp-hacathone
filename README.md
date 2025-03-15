@@ -1,4 +1,4 @@
-# tuwaiq-bootcamp-hacathone
+# tuwaiq-bootcamp-hackathon
  
 
 
